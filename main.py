@@ -40,6 +40,7 @@ class Root(ctk.CTk):
         self.entryFrame = EntryFrame(self)
         self.entryFrame.grid(row=2, column=0, sticky="ews")
 
+        # Sets input focus on the entry bar
         self.entryFrame.entry.after(10, self.entryFrame.entry.focus_set)
 
     def insertUserChat(self):
@@ -96,7 +97,8 @@ class Root(ctk.CTk):
 
         messageRow += 1
 
-        self.chatFrame._parent_canvas.yview_moveto()
+        # Scrolls to the bottom of the chatFrame after every bot response
+        root.after(100,self.chatFrame._parent_canvas.yview_moveto, 1)
 
 root = Root()
 root.mainloop()
